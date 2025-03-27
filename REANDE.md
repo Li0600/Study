@@ -2,6 +2,4 @@
 
 ---
 
-name:Stuname
-
-stunum=11111
+name:你真好看，哈哈哈哈哈
