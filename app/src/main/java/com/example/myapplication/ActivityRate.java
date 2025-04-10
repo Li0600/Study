@@ -46,5 +46,22 @@ public class ActivityRate extends AppCompatActivity {
         } catch (NumberFormatException ex) {
             show.setText("请输入正确数据");
         }
+
+
+
+
+
+
+
+
+
+        
+        
+        
+
+
+
+        
+
     }
 }
