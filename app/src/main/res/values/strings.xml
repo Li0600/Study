@@ -23,5 +23,10 @@
     <string name="btn_weight">体重</string>
     <string name="bml"> </string>
 
+    <string name="save_dabel">SAVE</string>
+    <string name="d_lable">INPUT</string>
+    <string name="d_config">GONFIG</string>
 
+    <string name="result_label">result</string>
+    <string name="Button">Button</string>
 </resources>

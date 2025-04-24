@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -14,12 +16,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ActivityRate extends AppCompatActivity {
+public class ActivityRate extends AppCompatActivity implements  Runnable {
     TextView show;
     private static final String TAG="Rate";
     private float dollarRate=0.5f;
     private float euroRate=0.7f;
     private float wonRate=0.8f;
+
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,16 @@ public class ActivityRate extends AppCompatActivity {
             return insets;
         });
         show=findViewById(R.id.rmb_show);
+
+        handler=new Handler(){
+            public void handleMessage(@Nullable Message msg){
+                super.handleMessage(msg);
+            }
+        };
+
+        //启动线程
+        Thread t=new Thread();
+        t.start();
     }
     public void onClick(View btn) {
         EditText input = findViewById(R.id.rmb);
@@ -74,6 +88,7 @@ public class ActivityRate extends AppCompatActivity {
         if(requestCode==3 && resultCode==6){
             Bundle bdl=data.getExtras();
             dollarRate=bdl.getFloat("key_dollar2");
+
             euroRate=bdl.getFloat("key_euro2");
             wonRate=bdl.getFloat("key_won2");
             Log.i(TAG, "onActivityResult:dollarRate="+dollarRate);
@@ -81,5 +96,16 @@ public class ActivityRate extends AppCompatActivity {
             Log.i(TAG, "onActivityResult:wonRate="+wonRate);
         }
         super.onActivityResult(requestCode,resultCode,data);
+    }
+    public void run(){
+         Log.i(TAG,"run:");
+         try{
+             Thread.sleep(5000);
+         }catch (InterruptedException e){
+             throw new RuntimeException(e);
+         }
+        Message msg=handler.obtainMessage(8,"swufe");
+         handler.sendMessage(msg);
+
     }
 }
