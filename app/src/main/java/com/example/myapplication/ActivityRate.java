@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -16,12 +15,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ActivityRate extends AppCompatActivity implements  Runnable {
+public class ActivityRate extends AppCompatActivity {
     TextView show;
-    private static final String TAG="Rate";
-    private float dollarRate=0.5f;
-    private float euroRate=0.7f;
-    private float wonRate=0.8f;
+    private static final String TAG = "ActivityRate";
+    private float dollarRate = 0.5f;
+    private float euroRate = 0.7f;
+    private float wonRate = 0.8f;
 
     private Handler handler;
 
@@ -36,18 +35,11 @@ public class ActivityRate extends AppCompatActivity implements  Runnable {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        show=findViewById(R.id.rmb_show);
+        show = findViewById(R.id.rmb_show);
 
-        handler=new Handler(){
-            public void handleMessage(@Nullable Message msg){
-                super.handleMessage(msg);
-            }
-        };
 
-        //启动线程
-        Thread t=new Thread();
-        t.start();
     }
+
     public void onClick(View btn) {
         EditText input = findViewById(R.id.rmb);
         String inpStr = input.getText().toString();
@@ -69,43 +61,33 @@ public class ActivityRate extends AppCompatActivity implements  Runnable {
 
     }
 
-    public void clickOpen(View btn){
+    public void clickOpen(View btn) {
         //打开新的窗口
-        Intent config=new Intent(this,ConfigActivity.class);
+        Intent config = new Intent(this, ConfigActivity.class);
         //传递参数
-        config.putExtra("dollar_rate_key",dollarRate);
-        config.putExtra("euro_rate_key",euroRate);
-        config.putExtra("won_rate_key",wonRate);
+        config.putExtra("dollar_rate_key", dollarRate);
+        config.putExtra("euro_rate_key", euroRate);
+        config.putExtra("won_rate_key", wonRate);
 
-        Log.i(TAG, "clickOpen:dollarRate="+dollarRate);
-        Log.i(TAG, "clickOpen:euroRate="+euroRate);
-        Log.i(TAG, "clickOpen:wonRate="+wonRate);
+        Log.i(TAG, "clickOpen:dollarRate=" + dollarRate);
+        Log.i(TAG, "clickOpen:euroRate=" + euroRate);
+        Log.i(TAG, "clickOpen:wonRate=" + wonRate);
 
-        startActivityForResult(config,3);
+        startActivityForResult(config, 3);
 
     }
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        if(requestCode==3 && resultCode==6){
-            Bundle bdl=data.getExtras();
-            dollarRate=bdl.getFloat("key_dollar2");
 
-            euroRate=bdl.getFloat("key_euro2");
-            wonRate=bdl.getFloat("key_won2");
-            Log.i(TAG, "onActivityResult:dollarRate="+dollarRate);
-            Log.i(TAG, "onActivityResult:euroRate="+euroRate);
-            Log.i(TAG, "onActivityResult:wonRate="+wonRate);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 3 && resultCode == 6) {
+            Bundle bdl = data.getExtras();
+            dollarRate = bdl.getFloat("key_dollar2", dollarRate);
+            euroRate = bdl.getFloat("key_euro2", euroRate);
+            wonRate = bdl.getFloat("key_won2", wonRate);
+            Log.i(TAG, "onActivityResult:dollarRate=" + dollarRate);
+            Log.i(TAG, "onActivityResult:euroRate=" + euroRate);
+            Log.i(TAG, "onActivityResult:wonRate=" + wonRate);
         }
-        super.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
-    public void run(){
-         Log.i(TAG,"run:");
-         try{
-             Thread.sleep(5000);
-         }catch (InterruptedException e){
-             throw new RuntimeException(e);
-         }
-        Message msg=handler.obtainMessage(8,"swufe");
-         handler.sendMessage(msg);
 
-    }
 }
