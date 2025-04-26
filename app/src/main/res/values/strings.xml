@@ -29,4 +29,7 @@
 
     <string name="result_label">result</string>
     <string name="Button">Button</string>
+
+    <string name="rate">中国银行外汇牌价</string>
+
 </resources>
