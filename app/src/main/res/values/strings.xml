@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">My Application</string>
 
+    <string name="height_label">身高</string>
+    <string name="weight_label">体重</string>
+    <string name="bml_label">计算BML</string>
+
     <string name="reset_label">reset</string>
     <string name="teama_name">Team A</string>
     <string name="teama_score">0</string>

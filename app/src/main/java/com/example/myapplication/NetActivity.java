@@ -1,19 +1,15 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -28,99 +24,60 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ActivityRate extends AppCompatActivity implements Runnable{
+public class NetActivity extends AppCompatActivity implements Runnable{
+
+    private static final String TAG="NetActivity";
+
     TextView show;
-    private static final String TAG = "ActivityRate";
-    private float dollarRate = 0.5f;
-    private float euroRate = 0.7f;
-    private float wonRate = 0.8f;
-
-    private Handler handler;
-
+    Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_rate);
+        setContentView(R.layout.activity_net);
+        show=findViewById(R.id.net_show);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+
         });
-        show = findViewById(R.id.rmb_show);
 
         handler=new Handler(Looper.getMainLooper()) {
             public void handleMessage(@NonNull Message msg) {
                 if (msg.what == 5) {                     // 检查消息标识符
-//                    String str = (String) msg.obj;       // 获取消息携带的数据
-                    Bundle bundle=(Bundle) msg.obj;
-//                    Log.i(TAG, "handleMessage: " + str); // 打印日志
-//                    show.setText(str);
-                    dollarRate=bundle.getFloat("dollar");
-                    wonRate=bundle.getFloat("won");
-                    euroRate=bundle.getFloat("euro");
-                    Toast.makeText(ActivityRate.this,"汇率更新完毕",Toast.LENGTH_SHORT).show();
+                    String str = (String) msg.obj;       // 获取消息携带的数据
+                    Log.i(TAG, "handleMessage: " + str); // 打印日志
+                    show.setText(str);
 
                 }
                 super.handleMessage(msg);
             }
         };
 
-        //启动线程
+//        //启动子线程
+//        Log.i(TAG,"onCreat:start Thread");
+//        Thread t=new Thread(this);
+//        t.start();//this.run();
+//启动子线程，方法2
+//        Thread t2=new Thread(new Thread(){
+//            public void run(){
+//
+//            }
+//        });
+//        t2.start();
+//启动子线程，方法3
+//        Thread t3=new Thread(()->{
+//            //run......
+//        });
+//        t3.start();
+    }
+
+    public void onClick2(View btn){
         Log.i(TAG,"onCreat:start Thread");
         Thread t=new Thread(this);
         t.start();//this.run();
-
-
-    }
-
-    public void onClick(View btn) {
-        EditText input = findViewById(R.id.rmb);
-        String inpStr = input.getText().toString();
-        try {
-            float rmb = Float.parseFloat((inpStr));
-            float result = 0.0f;
-            if (btn.getId() == R.id.btn_dollar) {
-                result = rmb * dollarRate;
-            } else if (btn.getId() == R.id.btn_euro) {
-                result = rmb * euroRate;
-            } else if (btn.getId() == R.id.btn_won) {
-                result = rmb * wonRate;
-            }
-            show.setText(String.valueOf(result));
-        } catch (NumberFormatException ex) {
-            show.setText("请输入正确数据");
-        }
-    }
-
-    public void clickOpen(View btn) {
-        //打开新的窗口
-        Intent config = new Intent(this, ConfigActivity.class);
-        //传递参数
-        config.putExtra("dollar_rate_key", dollarRate);
-        config.putExtra("euro_rate_key", euroRate);
-        config.putExtra("won_rate_key", wonRate);
-
-        Log.i(TAG, "clickOpen:dollarRate=" + dollarRate);
-        Log.i(TAG, "clickOpen:euroRate=" + euroRate);
-        Log.i(TAG, "clickOpen:wonRate=" + wonRate);
-
-        startActivityForResult(config, 3);
-
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 3 && resultCode == 6) {
-            Bundle bdl = data.getExtras();
-            dollarRate = bdl.getFloat("key_dollar2", dollarRate);
-            euroRate = bdl.getFloat("key_euro2", euroRate);
-            wonRate = bdl.getFloat("key_won2", wonRate);
-            Log.i(TAG, "onActivityResult:dollarRate=" + dollarRate);
-            Log.i(TAG, "onActivityResult:euroRate=" + euroRate);
-            Log.i(TAG, "onActivityResult:wonRate=" + wonRate);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -131,7 +88,6 @@ public class ActivityRate extends AppCompatActivity implements Runnable{
         // 声明URL对象变量，初始化为null
         URL url = null;
         String html=" ";
-        Bundle retbundle=new Bundle();
         try {
 //            // 创建URL对象，指定要访问的网络地址
 //            // 注意：这里缺少协议前缀(如http://)，会导致MalformedURLException
@@ -154,14 +110,16 @@ public class ActivityRate extends AppCompatActivity implements Runnable{
             // 打印网页的标题到日志（Android的Logcat）
             Log.i(TAG, "run: " + doc.title());  // 打印网页标题
 
+
             Elements tables = doc.getElementsByTag("table"); // 从文档中获取所有<table>标签元素（网页中的所有表格）
             Element table=tables.get(0);//找索引为0的表格，就是第一个表格
             Elements rows = table.getElementsByTag("tr"); // 从table中获取所有<tr>标签元素（表格中的所有单元格）
-            for (Element row:rows) {
+            rows.remove(0);
+            for (Element row:rows){
 
                 try {
-                    Log.i(TAG, "run:row=" + row);
-                    Elements tds = row.getElementsByTag("td");
+                    Log.i(TAG,"run:row="+row);
+                    Elements tds=row.getElementsByTag("td");
                     Log.i(TAG, "run: 当前行 td 数量=" + tds.size());
 
                     // 检查列数是否足够（至少 5 列）
@@ -170,28 +128,15 @@ public class ActivityRate extends AppCompatActivity implements Runnable{
                         Log.w(TAG, "run: 跳过列数不足的行: " + row.text());
                         continue;
                     }
-                    Element td1 = tds.first();
-                    Element td2 = tds.get(4);
-                    String str1=td1.text().trim();//将获取的内容去掉空格，并转成字符串
-                    String str2=td2.text().trim();
-                    Log.i(TAG,"run:td1="+str1+"->"+str2);
-                    html+=(str1+"=>"+str2+"\n");
-                    //提取三个汇率即可
-                    if(str1.equals("欧元")){
-                        retbundle.putFloat("euro",Float.parseFloat(str2));
-                    }
-                    else if(str1.equals("美元")){
-                        retbundle.putFloat("dollar",Float.parseFloat(str2));
-                    }
-                    else if(str1.equals("韩国元")){
-                        retbundle.putFloat("won",Float.parseFloat(str2));
-//
-                    }
-                } catch (Exception e) {
+                Element td1=tds.first();
+                Element td2=tds.get(4);
+                Log.i(TAG,"run:td1="+td1.text()+"->"+td2.text());
+                Log.i(TAG,"run:td2="+td2.text()+"->"+td2.html());
+                html+=(td1.text()+"=>"+td2.text()+"\n");
+            }catch (Exception e) {
                     Log.e(TAG, "run: 解析行失败: " + row, e);
                 }
-
-                }
+            }
 
 
         } catch (MalformedURLException e) {
@@ -204,7 +149,21 @@ public class ActivityRate extends AppCompatActivity implements Runnable{
         }
         //发送消息
         Message msg = handler.obtainMessage(5);  // 获取消息对象，what值为5
-        msg.obj = retbundle;           // 附加数据到消息
+        msg.obj = html;           // 附加数据到消息
         handler.sendMessage(msg);                // 发送消息到主线程队列
     }
+
+
+    // 输入流转换工具方法
+//    private String inputStream2String(InputStream inputStream) throws IOException {
+//        StringBuilder out = new StringBuilder();              // 高效字符串拼接
+//        Reader in = new InputStreamReader(inputStream, "utf-8"); // 按指定编码读取
+//        char[] buffer = new char[1024];                       // 缓冲区
+//        int rsz;
+//        while ((rsz = in.read(buffer)) > 0) {                 // 循环读取
+//            out.append(buffer, 0, rsz);                       // 填充到StringBuilder
+//        }
+//        return out.toString();                                // 返回完整字符串
+//    }
+
 }

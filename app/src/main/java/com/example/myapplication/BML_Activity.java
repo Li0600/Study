@@ -53,6 +53,4 @@ public class BML_Activity extends AppCompatActivity {
         }
     }
 
-
-
 }

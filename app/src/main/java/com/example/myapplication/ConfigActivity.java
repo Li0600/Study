@@ -24,6 +24,10 @@ public class ConfigActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_config);
 
+        dollarText=findViewById(R.id.bnt_d);
+        euroText=findViewById(R.id.bnt_e);
+        wonText=findViewById(R.id.bnt_w);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -39,9 +43,16 @@ public class ConfigActivity extends AppCompatActivity {
         Log.i(TAG,"onCreate:euro="+euro);
         Log.i(TAG,"onCreate:won="+won);
 
-        dollarText=findViewById(R.id.bnt_d);
-        euroText=findViewById(R.id.bnt_e);
-        wonText=findViewById(R.id.bnt_w);
+        // 将汇率值设置到EditText
+        dollarText.setText(String.valueOf(dollar));
+        euroText.setText(String.valueOf(euro));
+        wonText.setText(String.valueOf(won));
+
+        // 日志记录
+        Log.i(TAG, "onCreate:dollar=" + dollar);
+        Log.i(TAG, "onCreate:euro=" + euro);
+        Log.i(TAG, "onCreate:won=" + won);
+
     }
     public void save(View bnt){
         Log.i(TAG,"save:");
@@ -50,9 +61,12 @@ public class ConfigActivity extends AppCompatActivity {
         String euroStr=euroText.getText().toString();
         String wonStr=wonText.getText().toString();
 
+        //让信息在日志中显示出来
         Log.i(TAG,"save:dollarStr="+dollarStr);
         Log.i(TAG,"save:euroStr="+euroStr);
         Log.i(TAG,"save:wonStr="+wonStr);
+
+        //返回数据调用页面
 
         //带回数据
         Intent intent=getIntent();
@@ -63,9 +77,9 @@ public class ConfigActivity extends AppCompatActivity {
         bundle.putFloat("key_won2",Float.parseFloat(wonStr));
         //把bundle放到intent对象中
         intent.putExtras(bundle);
-
+        //设置返回结果
         setResult(6,intent);
-
+        //结束当前的activity并返回
         finish();
     }
 
