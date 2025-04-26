@@ -14,73 +14,72 @@
         android:layout_height="wrap_content"
         android:id="@+id/court"
         android:text="@string/court_label"
-        android:textSize="30sp"
+        android:textSize="15sp"
         android:layout_marginBottom="16dp"
         />
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="16dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:text="@string/teama_name"
-                android:textSize="25sp" />
+                android:textSize="20sp"
+                android:layout_marginBottom="16dp"/>
 
             <TextView
                 android:id="@+id/teama_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:text="@string/teama_score"
-                android:textSize="40sp" />
+                android:textSize="20sp"
+                android:layout_marginBottom="16dp"/>
 
             <Button
                 android:id="@+id/teama_btn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:onClick="onClick_a"
                 android:text="@string/btn3_lable"
-                android:textAllCaps="true" />
+                android:textAllCaps="true"
+                android:layout_marginBottom="16dp"
+                android:onClick="onClick_a"/>
 
             <Button
                 android:id="@+id/teama_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:onClick="onClick_a"
                 android:text="@string/btn2_lable"
-                android:textAllCaps="true" />
+                android:textAllCaps="true"
+                android:layout_marginBottom="16dp"
+                android:onClick="onClick_a"/>
 
             <Button
                 android:id="@+id/teama_btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/free"
                 android:layout_marginBottom="16dp"
-                android:onClick="onClick_a"
-                android:text="@string/free" />
-
-
+                android:onClick="onClick_a"/>
 
         </LinearLayout>
-
-
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginEnd="8dp"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -88,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/teamb_name"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_marginBottom="16dp"/>
 
             <TextView
@@ -96,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/teamb_score"
-                android:textSize="40sp"
+                android:textSize="20sp"
                 android:layout_marginBottom="16dp" />
 
             <Button
@@ -127,18 +126,17 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
+
+
     <Button
         android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reset_label"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="1dp"
         android:onClick="onClick_RESET1"
-        />
-
+        android:text="@string/reset_label" />
 
 
 </LinearLayout>

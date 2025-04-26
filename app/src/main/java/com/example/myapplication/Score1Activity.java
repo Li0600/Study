@@ -67,20 +67,26 @@ public class Score1Activity extends AppCompatActivity {
         score_b.setText(String.valueOf(s2));
     }
 
+
+    //保存方向改变时的数据
+
+    //将数据放入outState中
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+
         outState.putInt("teama_score",s1);
         outState.putInt("teamb_score",s2);
 
     }
 
+    //提取数据并进行显示
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         s1=savedInstanceState.getInt("teama_score");
         s2=savedInstanceState.getInt("teamb_score");
-        score_a.setText(String.valueOf(score_a));
-        score_b.setText(String.valueOf(score_b));
+        score_a.setText(String.valueOf(s1));
+        score_b.setText(String.valueOf(s2));
     }
 }
