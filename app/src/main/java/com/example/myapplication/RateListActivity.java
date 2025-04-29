@@ -20,14 +20,12 @@ public class RateListActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        //创建了一个ArrayList来存储字符串数据
-                List<String> list1 = new ArrayList<String>();
-        //循环向list1中添加了99个条目("item1"到"item99")
-               for(int i=1;i<100;i++) {
-                   list1.add("item" + i);
-               }
+//        //创建了一个ArrayList来存储字符串数据
+//                List<String> list1 = new ArrayList<String>();
+//        //循环向list1中添加了99个条目("item1"到"item99")
+//               for(int i=1;i<100;i++) {
+//                   list1.add("item" + i);
+//               }
 
         //创建了一个字符串数组，包含四个元素
         //准备数据
@@ -43,17 +41,13 @@ public class RateListActivity extends ListActivity {
         //绑定
         setListAdapter(adapter);
 
-
         handler = new Handler(Looper.getMainLooper()) {
-
             //处理接收的信息
             public void handleMessage(@NonNull Message msg) {
-
                 List<String> getlist=(List<String>) msg.obj;
                 ListAdapter adapter2=new ArrayAdapter<String>(RateListActivity.this, android.R.layout.simple_list_item_1,getlist);
                 setListAdapter(adapter2);
             }
-
         };
 
         //启动线程获取网络数据
@@ -63,24 +57,18 @@ public class RateListActivity extends ListActivity {
             }catch (InterruptedException e){
                 throw new RuntimeException(e);
             }
-
             //从网页区获取信息
             List<String> list=new ArrayList<>();
             list.add("美元1==>123.45");
             list.add("美元2==>123.45");
             list.add("美元3==>123.45");
             list.add("美元4==>123.45");
-
             //发送消息
             Message msg=handler.obtainMessage(5);
             msg.obj = list; // 添加这行，将数据列表放入Message
             handler.sendMessage(msg);
 
-
-
         });
         t.start();
-
-
     }
 }
