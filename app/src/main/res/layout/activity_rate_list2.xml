@@ -8,9 +8,6 @@
     android:orientation="vertical"
     tools:context=".RateListActivity2">
 
-
-
-
     <ListView
         android:id="@+id/mylistview"
         android:layout_width="match_parent"
