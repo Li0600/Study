@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow>
+        <Button android:id="@+id/ui10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u10_label"
+            android:layout_column="0"/>
+
+        <Button android:id="@+id/ui11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u10_label"
+            android:layout_column="1"/>
+
+    </TableRow>
+
+    <TableRow>
+        <Button android:id="@+id/ui12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u10_label"
+            android:layout_column="1"/>
+
+        <Button android:id="@+id/ui13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u10_label"
+            android:layout_column="2"/>
+
+    </TableRow>
+
+    <TableRow>
+        <Button android:id="@+id/ui14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u10_label"
+            android:layout_column="2"/>
+
+
+    </TableRow>
+
+</TableLayout>

@@ -36,4 +36,54 @@
 
     <string name="rate">中国银行外汇牌价</string>
 
+    <string name="TextView_label">TextView</string>
+
+    <string name="Hello_label">Hello</string>
+    <string name="input_label">8200.74</string>
+    <string name="money_lalel">欧元</string>
+    <string name="label">计算</string>
+
+    <string name="u1_label">第一个按钮</string>
+    <string name="u2_label">第二个按钮</string>
+    <string name="u3_label">第三个按钮</string>
+    <string name="u4_label">第四个按钮</string>
+    <string name="u5_label">第五个按钮</string>
+
+    <string name="u6_label">请输入信息</string>
+    <string name="u7_label"> </string>
+    <string name="u8_label">确定</string>
+    <string name="u9_label">取消</string>
+
+    <string name="u10_label">第一个按钮</string>
+    <string name="u11_label">第二个按钮</string>
+    <string name="u12_label">第三个按钮</string>
+    <string name="u13_label">第四个按钮</string>
+    <string name="u14_label">第五个按钮</string>
+
+    <string name="u15_label">hello</string>
+    <string name="u16_label">单击</string>
+
+    <string name="u17_label">这里可以输入文字</string>
+    <string name="u18_label">获取EditView的值</string>
+
+    <string name="plain_label">Plain</string>
+    <string name="serif_label">Serif</string>
+    <string name="bold_label">Bold</string>
+    <string name="italic_label">Italic</string>
+    <string name="getView_label">获取CheckBox的值</string>
+
+    <string name="man_label">男</string>
+    <string name="women_label">女</string>
+    <string name="getView1_label">获取性别</string>
+    <string name="sex_label">请选择性别</string>
+
+    <string name="data_label">No Data</string>
+
+    <string name="bt6_label">清单</string>
+    <string name="bt7_label">专注</string>
+    <string name="bt8_label">我的</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

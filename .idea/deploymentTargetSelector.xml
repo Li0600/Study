@@ -13,19 +13,19 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="RateListActivity (5)">
+      <SelectionState runConfigName="MainActivity5 (2)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="RateListActivity2">
+      <SelectionState runConfigName="MainActivity5 (5)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="RateListActivity2 (1)">
+      <SelectionState runConfigName="MainActivity5">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="RateListActivity2 (2)">
+      <SelectionState runConfigName="MainActivity5 (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="RateListActivity2 (3)">
+      <SelectionState runConfigName="MainActivity5 (3)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
