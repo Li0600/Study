@@ -82,6 +82,10 @@
     <string name="bt6_label">清单</string>
     <string name="bt7_label">专注</string>
     <string name="bt8_label">我的</string>
+
+    <string name="bt9_label">汇率列表</string>
+    <string name="bt10_label">加载中，请稍候...</string>
+    <string name="bt11_label">我的</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
